@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lily Bird Sweets | Custom Cakes, Pharr TX</title>
+<meta name="description" content="Custom cakes and sweets, baked with love in Pharr, Texas. Submit an order inquiry for your next celebration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&family=Beau+Rivage&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso: #2B1A12;
+    --espresso-soft: #4A342A;
+    --rose: #C0666F;
+    --rose-deep: #A5505A;
+    --blush: #F1CFCB;
+    --sage: #8C9B7E;
+    --sage-deep: #6F7E62;
+    --cream: #FBF3E9;
+    --cream-deep: #F3E6D6;
+    --paper: #FFFDF9;
+    --max: 1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:'Karla', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--espresso);
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  section{padding:96px 0;}
+  .script{
+    font-family:'Beau Rivage', cursive;
+    font-weight:400;
+    line-height:1;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- Bird motif (inline SVG, reused) ---------- */
+  .motif{display:block;}
+  .motif path, .motif ellipse, .motif circle{
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2.2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .motif .fill{fill:currentColor; stroke:none;}
+
+  /* ---------- Header / nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,233,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(43,26,18,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none;
+    color:var(--espresso);
+  }
+  .brand .motif{width:34px; height:34px; color:var(--rose-deep);}
+  .brand-text{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0.01em;
+  }
+  nav.links{display:flex; gap:32px; align-items:center;}
+  nav.links a{
+    text-decoration:none;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--espresso-soft);
+    position:relative;
+    padding:4px 2px;
+  }
+  nav.links a:hover, nav.links a:focus-visible{color:var(--rose-deep);}
+  nav.links a:focus-visible{outline:2px solid var(--rose); outline-offset:4px; border-radius:3px;}
+  .nav-cta{
+    display:inline-block;
+    background:var(--rose-deep);
+    color:var(--paper) !important;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.9rem;
+    text-decoration:none;
+    transition:background 0.2s ease;
+  }
+  .nav-cta:hover{background:var(--espresso);}
+  .nav-cta:focus-visible{outline:2px solid var(--espresso); outline-offset:3px;}
+  .menu-toggle{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    padding:8px; color:var(--espresso);
+  }
+  .menu-toggle svg{width:26px; height:26px;}
+
+  @media (max-width:840px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--paper);
+      flex-direction:column; align-items:flex-start;
+      gap:0;
+      max-height:0; overflow:hidden;
+      border-bottom:1px solid rgba(43,26,18,0.08);
+      transition:max-height 0.25s ease;
+    }
+    nav.links.open{max-height:320px;}
+    nav.links a{width:100%; padding:16px 28px; border-top:1px solid rgba(43,26,18,0.06);}
+    nav.links .nav-cta{margin:16px 28px; text-align:center;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:72px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-eyebrow-motif{
+    color:var(--rose-deep);
+    width:64px; height:44px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    max-width:11ch;
+  }
+  .hero .script-line{
+    display:block;
+    font-size:clamp(3.2rem, 7vw, 5.2rem);
+    color:var(--rose-deep);
+  }
+  .hero p.lede{
+    margin-top:22px;
+    max-width:38ch;
+    font-size:1.1rem;
+    color:var(--espresso-soft);
+  }
+  .hero-actions{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.98rem;
+    text-decoration:none;
+    transition:transform 0.15s ease, background 0.2s ease;
+    border:1.5px solid transparent;
+  }
+  .btn-primary{background:var(--rose-deep); color:var(--paper);}
+  .btn-primary:hover{background:var(--espresso);}
+  .btn-secondary{background:transparent; border-color:var(--espresso); color:var(--espresso);}
+  .btn-secondary:hover{background:var(--espresso); color:var(--paper);}
+  .btn:focus-visible{outline:2px solid var(--espresso); outline-offset:3px;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:28px;
+    background:linear-gradient(155deg, var(--blush) 0%, var(--cream-deep) 60%, var(--sage) 130%);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-visual .motif{
+    width:62%; color:var(--espresso);
+    opacity:0.85;
+  }
+  .hero-visual::after{
+    content:"";
+    position:absolute; inset:0;
+    border:1.5px solid rgba(43,26,18,0.12);
+    border-radius:28px;
+  }
+  .hero-note{
+    position:absolute;
+    bottom:22px; left:22px; right:22px;
+    background:rgba(255,253,249,0.88);
+    border-radius:14px;
+    padding:12px 16px;
+    font-size:0.85rem;
+    color:var(--espresso-soft);
+    font-weight:600;
+  }
+
+  @media (max-width:840px){
+    .hero .wrap{grid-template-columns:1fr; gap:40px;}
+    .hero-visual{aspect-ratio:5/4;}
+  }
+
+  /* ---------- Section headings ---------- */
+  .section-head{
+    max-width:44ch;
+    margin-bottom:48px;
+  }
+  .section-head h2{font-size:clamp(1.9rem, 3.4vw, 2.5rem);}
+  .section-head p{color:var(--espresso-soft); margin-top:12px; font-size:1.02rem;}
+  .section-alt{background:var(--paper);}
+
+  /* ---------- Divider ---------- */
+  .divider{
+    display:flex; align-items:center; justify-content:center;
+    gap:14px;
+    color:var(--sage-deep);
+    margin:0;
+  }
+  .divider .line{flex:1; height:1px; background:rgba(43,26,18,0.15); max-width:120px;}
+  .divider .motif{width:30px; height:22px;}
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .gallery-grid > .g-wide{grid-column:span 2;}
+  .g-card{
+    border-radius:20px;
+    padding:26px;
+    min-height:220px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    position:relative;
+    overflow:hidden;
+    color:var(--espresso);
+  }
+  .g-card .motif{
+    position:absolute; top:20px; right:20px;
+    width:38px; height:38px; opacity:0.5;
+  }
+  .g-card h3{font-size:1.15rem; font-weight:600;}
+  .g-card span{
+    display:block; margin-top:4px;
+    font-size:0.88rem; color:var(--espresso-soft);
+  }
+  .g-1{background:linear-gradient(150deg, var(--blush), var(--cream-deep));}
+  .g-2{background:linear-gradient(150deg, var(--sage), #B9C4AC);}
+  .g-3{background:linear-gradient(150deg, var(--cream-deep), var(--blush));}
+  .g-4{background:linear-gradient(150deg, #E7D8C4, var(--cream-deep));}
+  .g-5{background:linear-gradient(150deg, var(--blush), #E7C6C2);}
+
+  .gallery-note{
+    margin-top:26px;
+    font-size:0.9rem;
+    color:var(--espresso-soft);
+    border-left:3px solid var(--sage);
+    padding-left:14px;
+  }
+
+  @media (max-width:840px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid > .g-wide{grid-column:span 2;}
+  }
+  @media (max-width:560px){
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-grid > .g-wide{grid-column:span 1;}
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about-portrait{
+    aspect-ratio:1;
+    border-radius:24px;
+    background:linear-gradient(160deg, var(--cream-deep), var(--blush));
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .about-portrait .motif{width:52%; color:var(--rose-deep);}
+  .about-copy h2{margin-bottom:18px;}
+  .about-copy p{color:var(--espresso-soft); margin:0 0 16px;}
+  .about-copy p:last-child{margin-bottom:0;}
+  @media (max-width:840px){
+    .about-grid{grid-template-columns:1fr; gap:32px;}
+    .about-portrait{max-width:320px; margin:0 auto;}
+  }
+
+  /* ---------- Order form ---------- */
+  .order-section{
+    background:var(--espresso);
+    color:var(--cream);
+    border-radius:32px;
+    margin:0 28px;
+    padding:64px 48px;
+  }
+  .order-section .section-head h2, .order-section .section-head p{color:var(--cream);}
+  .order-section .section-head p{color:rgba(251,243,233,0.75);}
+  .order-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px 24px;
+  }
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{font-size:0.88rem; font-weight:600; color:rgba(251,243,233,0.85);}
+  .field .hint{font-size:0.78rem; color:rgba(251,243,233,0.55);}
+  .field input, .field select, .field textarea{
+    background:rgba(251,243,233,0.08);
+    border:1.5px solid rgba(251,243,233,0.25);
+    border-radius:10px;
+    padding:12px 14px;
+    color:var(--cream);
+    font-family:'Karla', sans-serif;
+    font-size:0.98rem;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(251,243,233,0.4);}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--rose);
+    background:rgba(251,243,233,0.12);
+  }
+  .field textarea{resize:vertical; min-height:96px;}
+  .field select{
+    appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23FBF3E9' stroke-width='2'><path d='M5 8l5 5 5-5'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+  }
+  .order-submit{
+    margin-top:30px;
+    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .order-submit .btn-primary{
+    background:var(--rose);
+    border:none;
+    cursor:pointer;
+    font-family:'Karla', sans-serif;
+  }
+  .order-submit .btn-primary:hover{background:var(--blush); color:var(--espresso);}
+  .order-submit .disclaimer{font-size:0.85rem; color:rgba(251,243,233,0.6); max-width:42ch;}
+  .form-status{
+    margin-top:18px;
+    padding:12px 16px;
+    border-radius:10px;
+    font-size:0.9rem;
+    display:none;
+  }
+  .form-status.show{display:block;}
+  .form-status.ok{background:rgba(140,155,126,0.25); color:#DDE7D3;}
+  .form-status.err{background:rgba(192,102,111,0.3); color:#F6DADD;}
+
+  @media (max-width:840px){
+    .order-section{margin:0 16px; padding:44px 24px; border-radius:24px;}
+    .order-grid{grid-template-columns:1fr;}
+    .field.full{grid-column:1;}
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:40px;
+  }
+  .contact-card h3{font-size:1.05rem; margin-bottom:10px;}
+  .contact-card p, .contact-card a{
+    color:var(--espresso-soft);
+    text-decoration:none;
+    font-size:0.98rem;
+    display:block;
+    margin:4px 0;
+  }
+  .contact-card a:hover{color:var(--rose-deep);}
+  .social-row{display:flex; gap:14px; margin-top:14px;}
+  .social-row a{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:var(--blush);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--espresso);
+    transition:background 0.2s ease;
+  }
+  .social-row a:hover{background:var(--rose-deep); color:var(--paper);}
+  .social-row svg{width:18px; height:18px;}
+
+  footer{
+    border-top:1px solid rgba(43,26,18,0.1);
+    padding:28px 0;
+    font-size:0.85rem;
+    color:var(--espresso-soft);
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
+  @media (max-width:840px){
+    .contact-grid{grid-template-columns:1fr; gap:32px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <svg class="motif" viewBox="0 0 120 90" aria-hidden="true">
+        <path d="M8 62 C30 62 46 58 56 46 C64 36 70 24 76 14"/>
+        <ellipse cx="80" cy="30" rx="14" ry="10"/>
+        <path class="fill" d="M92 28 l10 -4 l-6 9 z"/>
+        <circle class="fill" cx="86" cy="27" r="1.6"/>
+        <path d="M68 40 c4 -2 9 -2 12 1"/>
+        <path d="M40 55 c4 -6 9 -8 15 -7"/>
+        <circle class="fill" cx="30" cy="52" r="4"/>
+        <path d="M30 52 c3 -6 8 -8 12 -6"/>
+      </svg>
+      <span class="brand-text">Lily Bird Sweets</span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="links" id="navLinks">
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#order" class="nav-cta">Start an order</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <svg class="hero-eyebrow-motif motif" viewBox="0 0 120 80" aria-hidden="true">
+          <path d="M6 60 C28 58 44 50 54 38 C62 28 68 18 74 10"/>
+          <ellipse cx="78" cy="24" rx="13" ry="9"/>
+          <path class="fill" d="M90 22 l9 -4 l-5 8 z"/>
+        </svg>
+        <h1>Custom cakes for
+          <span class="script-line">every celebration</span>
+        </h1>
+        <p class="lede">Lily Bird Sweets bakes custom cakes, cupcakes, and treats in Pharr, Texas — made to order, made to share.</p>
+        <div class="hero-actions">
+          <a href="#order" class="btn btn-primary">Start your order</a>
+          <a href="#gallery" class="btn btn-secondary">See the gallery</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg class="motif" viewBox="0 0 160 120" aria-hidden="true">
+          <path d="M10 95 C45 92 70 82 88 62 C102 46 112 28 120 12"/>
+          <ellipse cx="126" cy="34" rx="20" ry="14"/>
+          <path class="fill" d="M144 30 l14 -6 l-8 12 z"/>
+          <circle class="fill" cx="136" cy="30" r="2.4"/>
+          <path d="M104 52 c6 -3 13 -3 17 1"/>
+          <path d="M60 88 c6 -9 13 -12 22 -10"/>
+          <circle class="fill" cx="46" cy="82" r="6"/>
+          <path d="M46 82 c4 -9 12 -12 18 -9"/>
+          <path d="M46 82 c-2 8 2 14 8 17"/>
+        </svg>
+        <div class="hero-note">Photo gallery goes here — swap this panel for your own cake photos.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A taste of what we bake</h2>
+        <p>A few of the celebrations we've helped sweeten. Birthdays, showers, quinceañeras, and everything in between.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-card g-1 g-wide">
+          <svg class="motif" viewBox="0 0 60 60" aria-hidden="true"><path d="M6 40 C20 40 30 34 36 24"/><circle class="fill" cx="42" cy="18" r="5"/></svg>
+          <h3>Birthday cakes</h3>
+          <span>Buttercream florals, drip finishes, custom toppers</span>
+        </div>
+        <div class="g-card g-2">
+          <svg class="motif" viewBox="0 0 60 60" aria-hidden="true"><path d="M6 40 C20 40 30 34 36 24"/><circle class="fill" cx="42" cy="18" r="5"/></svg>
+          <h3>Cupcakes</h3>
+          <span>By the dozen, any flavor</span>
+        </div>
+        <div class="g-card g-3">
+          <svg class="motif" viewBox="0 0 60 60" aria-hidden="true"><path d="M6 40 C20 40 30 34 36 24"/><circle class="fill" cx="42" cy="18" r="5"/></svg>
+          <h3>Quinceañeras &amp; showers</h3>
+          <span>Tiered cakes built to match your theme</span>
+        </div>
+        <div class="g-card g-4">
+          <svg class="motif" viewBox="0 0 60 60" aria-hidden="true"><path d="M6 40 C20 40 30 34 36 24"/><circle class="fill" cx="42" cy="18" r="5"/></svg>
+          <h3>Seasonal treats</h3>
+          <span>Holiday flavors and limited runs</span>
+        </div>
+        <div class="g-card g-5 g-wide">
+          <svg class="motif" viewBox="0 0 60 60" aria-hidden="true"><path d="M6 40 C20 40 30 34 36 24"/><circle class="fill" cx="42" cy="18" r="5"/></svg>
+          <h3>Custom orders</h3>
+          <span>Tell us the occasion, we'll design around it</span>
+        </div>
+      </div>
+      <p class="gallery-note">These tiles are placeholders — drop in real photos of finished cakes here and this section is ready to go.</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-portrait">
+        <svg class="motif" viewBox="0 0 140 140" aria-hidden="true">
+          <path d="M10 110 C45 106 70 92 88 68 C100 52 108 34 116 18"/>
+          <ellipse cx="120" cy="38" rx="18" ry="13"/>
+          <path class="fill" d="M138 34 l12 -5 l-7 10 z"/>
+          <circle class="fill" cx="130" cy="34" r="2.2"/>
+        </svg>
+      </div>
+      <div class="about-copy">
+        <h2>Baked with love, from a home kitchen in Pharr</h2>
+        <p>Lily Bird Sweets started with a simple idea: every celebration deserves a cake made just for it. No walk-in cases, no set menu — every order starts with a conversation about what you're celebrating and what you love.</p>
+        <p>From first birthdays to quinceañeras, every cake is baked, filled, and decorated by hand, using real ingredients and enough time to get the details right.</p>
+        <div class="divider" style="justify-content:flex-start; margin-top:24px;">
+          <span class="line" style="max-width:60px;"></span>
+          <svg class="motif" viewBox="0 0 40 30" aria-hidden="true"><circle class="fill" cx="10" cy="15" r="3"/><path d="M13 15 c3 -4 8 -5 12 -2"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order form -->
+  <section id="order" class="section-alt">
+    <div class="wrap">
+      <div class="order-section">
+        <div class="section-head">
+          <h2>Request your cake</h2>
+          <p>Fill this out with as much detail as you can. We'll follow up within 24–48 hours to confirm details and pricing before anything is booked.</p>
+        </div>
+
+        <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="hidden" name="_subject" value="New cake order inquiry — Lily Bird Sweets">
+
+          <div class="order-grid">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="Name" required placeholder="Full name">
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="Phone" required placeholder="(956) 000-0000">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" required placeholder="you@email.com">
+            </div>
+            <div class="field">
+              <label for="occasion">Occasion</label>
+              <select id="occasion" name="Occasion" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Birthday</option>
+                <option>Quinceañera</option>
+                <option>Wedding / bridal shower</option>
+                <option>Baby shower</option>
+                <option>Graduation</option>
+                <option>Anniversary</option>
+                <option>Just because</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="eventdate">Date needed</label>
+              <input type="date" id="eventdate" name="Date needed" required>
+              <span class="hint">Please allow at least 2 weeks' notice.</span>
+            </div>
+            <div class="field">
+              <label for="servings">Servings / size</label>
+              <select id="servings" name="Servings" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Small (1–10 servings)</option>
+                <option>Medium (11–25 servings)</option>
+                <option>Large (26–50 servings)</option>
+                <option>Extra large (50+ servings)</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="flavors">Flavor &amp; filling preferences</label>
+              <input type="text" id="flavors" name="Flavors" placeholder="e.g. vanilla bean cake, strawberry filling">
+            </div>
+            <div class="field">
+              <label for="budget">Budget range</label>
+              <select id="budget" name="Budget">
+                <option value="" disabled selected>Select one</option>
+                <option>Under $50</option>
+                <option>$50–$100</option>
+                <option>$100–$200</option>
+                <option>$200+</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="inspiration">Inspiration photo (optional)</label>
+              <input type="file" id="inspiration" name="Inspiration photo" accept="image/*">
+            </div>
+            <div class="field full">
+              <label for="notes">Design ideas or additional details</label>
+              <textarea id="notes" name="Notes" placeholder="Colors, theme, allergies, anything else we should know"></textarea>
+            </div>
+          </div>
+
+          <div class="order-submit">
+            <button type="submit" class="btn btn-primary">Send my request</button>
+            <span class="disclaimer">This is an inquiry, not a confirmed order — we'll reach out to finalize details and pricing.</span>
+          </div>
+          <div class="form-status" id="formStatus" role="status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Get in touch</h2>
+        <p>Have a question before you order? Reach out any of these ways.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Location</h3>
+          <p>Pharr, Texas</p>
+          <p>Pickup by appointment</p>
+        </div>
+        <div class="contact-card">
+          <h3>Contact</h3>
+          <a href="mailto:lilybirdsweets@gmail.com">lilybirdsweets@gmail.com</a>
+          <a href="tel:19561234567">(956) 123-4567</a>
+        </div>
+        <div class="contact-card">
+          <h3>Follow along</h3>
+          <p>@lilybirdsweets</p>
+          <div class="social-row">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.06 5.66 21.2 10.44 22v-7.02H7.9v-2.92h2.54V9.86c0-2.5 1.5-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.92h-2.34V22C18.34 21.2 22 17.06 22 12.06Z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.3 1.9 1.6 3.4 3.6 3.8v2.6c-1.3 0-2.6-.4-3.6-1.1v6.2c0 3-2.4 5.5-5.5 5.5S3 17.5 3 14.5 5.4 9 8.5 9c.4 0 .8 0 1.1.1v2.7c-.3-.1-.7-.2-1.1-.2-1.6 0-2.9 1.3-2.9 2.9s1.3 2.9 2.9 2.9 2.9-1.3 2.9-2.9V3h2.6Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© <span id="year"></span> Lily Bird Sweets. Baked with love. Made to share.</span>
+    <span>Site by RGV Sites For You</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Order form submit (AJAX to Formspree so the visitor stays on the page)
+  const orderForm = document.getElementById('orderForm');
+  const formStatus = document.getElementById('formStatus');
+
+  orderForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formStatus.className = 'form-status show';
+    formStatus.textContent = 'Sending your request…';
+
+    try {
+      const response = await fetch(orderForm.action, {
+        method: 'POST',
+        body: new FormData(orderForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formStatus.className = 'form-status show ok';
+        formStatus.textContent = "Thank you! Your request has been sent — we'll follow up within 24–48 hours.";
+        orderForm.reset();
+      } else {
+        formStatus.className = 'form-status show err';
+        formStatus.textContent = "Something went wrong sending your request. Please email lilybirdsweets@gmail.com directly.";
+      }
+    } catch (err) {
+      formStatus.className = 'form-status show err';
+      formStatus.textContent = "Something went wrong sending your request. Please email lilybirdsweets@gmail.com directly.";
+    }
+  });
+</script>
+
+</body>
+</html>
