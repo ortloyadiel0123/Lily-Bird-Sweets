@@ -1,0 +1,205 @@
+/* =========================================================
+   Lily Bird Sweets — shared styles
+   Linked by every page (index.html, menu.html, seasonalmenu.html,
+   quinceaneras.html). Colors, type, header/nav, buttons, section
+   headings, dividers, and footer live here so they only need to
+   be changed in one place.
+   ========================================================= */
+
+:root{
+  --espresso: #2B1A12;
+  --espresso-soft: #4A342A;
+  --rose: #C0666F;
+  --rose-deep: #A5505A;
+  --blush: #F1CFCB;
+  --sage: #8C9B7E;
+  --sage-deep: #6F7E62;
+  --cream: #FBF3E9;
+  --cream-deep: #F3E6D6;
+  --paper: #FFFDF9;
+  --max: 1120px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--espresso);
+  font-family:'Karla', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+h1,h2,h3{
+  font-family:'Fraunces', serif;
+  font-weight:500;
+  margin:0;
+  color:var(--espresso);
+}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+section{padding:96px 0;}
+.script{
+  font-family:'Beau Rivage', cursive;
+  font-weight:400;
+  line-height:1;
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+}
+
+/* ---------- Bird motif (inline SVG, reused) ---------- */
+.motif{display:block;}
+.motif path, .motif ellipse, .motif circle{
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.motif .fill{fill:currentColor; stroke:none;}
+
+/* ---------- Header / nav ---------- */
+header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,243,233,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(43,26,18,0.08);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 28px;
+  max-width:var(--max); margin:0 auto;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  text-decoration:none;
+  color:var(--espresso);
+}
+.brand .motif{width:34px; height:34px; color:var(--rose-deep);}
+.brand-text{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.15rem;
+  letter-spacing:0.01em;
+}
+nav.links{display:flex; gap:32px; align-items:center;}
+nav.links a{
+  text-decoration:none;
+  font-size:0.95rem;
+  font-weight:600;
+  color:var(--espresso-soft);
+  position:relative;
+  padding:4px 2px;
+}
+nav.links a:hover, nav.links a:focus-visible{color:var(--rose-deep);}
+nav.links a:focus-visible{outline:2px solid var(--rose); outline-offset:4px; border-radius:3px;}
+nav.links a[aria-current="page"]{
+  color:var(--rose-deep);
+  border-bottom:2px solid var(--rose-deep);
+}
+.nav-cta{
+  display:inline-block;
+  background:var(--rose-deep);
+  color:var(--paper) !important;
+  padding:10px 20px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:0.9rem;
+  text-decoration:none;
+  transition:background 0.2s ease;
+}
+.nav-cta:hover{background:var(--espresso);}
+.nav-cta:focus-visible{outline:2px solid var(--espresso); outline-offset:3px;}
+.menu-toggle{
+  display:none;
+  background:none; border:none; cursor:pointer;
+  padding:8px; color:var(--espresso);
+}
+.menu-toggle svg{width:26px; height:26px;}
+
+@media (max-width:840px){
+  nav.links{
+    position:absolute; top:100%; left:0; right:0;
+    background:var(--paper);
+    flex-direction:column; align-items:flex-start;
+    gap:0;
+    max-height:0; overflow:hidden;
+    border-bottom:1px solid rgba(43,26,18,0.08);
+    transition:max-height 0.25s ease;
+  }
+  nav.links.open{max-height:420px;}
+  nav.links a{width:100%; padding:16px 28px; border-top:1px solid rgba(43,26,18,0.06);}
+  nav.links a[aria-current="page"]{border-bottom:none; background:rgba(192,102,111,0.08);}
+  nav.links .nav-cta{margin:16px 28px; text-align:center;}
+  .menu-toggle{display:block;}
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:0.98rem;
+  text-decoration:none;
+  transition:transform 0.15s ease, background 0.2s ease;
+  border:1.5px solid transparent;
+}
+.btn-primary{background:var(--rose-deep); color:var(--paper);}
+.btn-primary:hover{background:var(--espresso);}
+.btn-secondary{background:transparent; border-color:var(--espresso); color:var(--espresso);}
+.btn-secondary:hover{background:var(--espresso); color:var(--paper);}
+.btn:focus-visible{outline:2px solid var(--espresso); outline-offset:3px;}
+
+/* ---------- Section headings ---------- */
+.section-head{
+  max-width:44ch;
+  margin-bottom:48px;
+}
+.section-head h2{font-size:clamp(1.9rem, 3.4vw, 2.5rem);}
+.section-head p{color:var(--espresso-soft); margin-top:12px; font-size:1.02rem;}
+.section-alt{background:var(--paper);}
+
+/* ---------- Divider ---------- */
+.divider{
+  display:flex; align-items:center; justify-content:center;
+  gap:14px;
+  color:var(--sage-deep);
+  margin:0;
+}
+.divider .line{flex:1; height:1px; background:rgba(43,26,18,0.15); max-width:120px;}
+.divider .motif{width:30px; height:22px;}
+
+/* ---------- Simple page header (used by inner pages) ---------- */
+.page-header{
+  padding:64px 0 48px;
+  text-align:center;
+}
+.page-header .script-line{
+  display:block;
+  color:var(--rose-deep);
+  font-size:clamp(2.6rem, 6vw, 4rem);
+}
+.page-header h1{font-size:clamp(1.8rem, 3.6vw, 2.4rem);}
+.page-header p{
+  margin-top:14px;
+  color:var(--espresso-soft);
+  max-width:48ch;
+  margin-left:auto; margin-right:auto;
+}
+
+/* ---------- Footer ---------- */
+footer{
+  border-top:1px solid rgba(43,26,18,0.1);
+  padding:28px 0;
+  font-size:0.85rem;
+  color:var(--espresso-soft);
+}
+.footer-row{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+}
