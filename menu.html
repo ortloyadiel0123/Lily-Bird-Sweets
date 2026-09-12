@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | Lily Bird Sweets</title>
+<meta name="description" content="Cookie platters, cookie boxes, cakes, and more from Lily Bird Sweets in Pharr, Texas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;600;700&family=Beau+Rivage&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Page-specific styles for the menu page only. */
+  .menu-category{
+    margin-bottom:64px;
+  }
+  .menu-category:last-child{margin-bottom:0;}
+  .menu-category-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:26px;
+  }
+  .menu-category-head h2{font-size:clamp(1.4rem, 2.6vw, 1.8rem);}
+  .menu-category-head .line{
+    flex:1; height:1px; background:rgba(43,26,18,0.15);
+  }
+  .menu-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 48px;
+  }
+  .menu-item{
+    display:flex; gap:14px;
+    padding:18px 0;
+    border-bottom:1px solid rgba(43,26,18,0.1);
+  }
+  .menu-item .motif{
+    width:22px; height:22px; flex-shrink:0;
+    margin-top:3px;
+    color:var(--rose);
+  }
+  .menu-item h3{
+    font-size:1.05rem;
+    font-weight:600;
+    text-transform:capitalize;
+  }
+  .menu-item p{
+    margin:4px 0 0;
+    font-size:0.92rem;
+    color:var(--espresso-soft);
+  }
+  .menu-cta{
+    margin-top:64px;
+    text-align:center;
+    padding:48px 24px;
+    background:var(--paper);
+    border-radius:24px;
+  }
+  .menu-cta h2{margin-bottom:12px;}
+  .menu-cta p{color:var(--espresso-soft); margin-bottom:24px; max-width:44ch; margin-left:auto; margin-right:auto;}
 
+  @media (max-width:700px){
+    .menu-list{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">
+      <svg class="motif" viewBox="0 0 120 90" aria-hidden="true">
+        <path d="M8 62 C30 62 46 58 56 46 C64 36 70 24 76 14"/>
+        <ellipse cx="80" cy="30" rx="14" ry="10"/>
+        <path class="fill" d="M92 28 l10 -4 l-6 9 z"/>
+        <circle class="fill" cx="86" cy="27" r="1.6"/>
+        <path d="M68 40 c4 -2 9 -2 12 1"/>
+        <path d="M40 55 c4 -6 9 -8 15 -7"/>
+        <circle class="fill" cx="30" cy="52" r="4"/>
+        <path d="M30 52 c3 -6 8 -8 12 -6"/>
+      </svg>
+      <span class="brand-text">Lily Bird Sweets</span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menuToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="menu.html" aria-current="page">Menu</a>
+      <a href="seasonalmenu.html">Seasonal Menu</a>
+      <a href="quinceaneras.html">Quinceañeras</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html#order" class="nav-cta">Start an order</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-header wrap">
+    <span class="script-line script">Sweet things</span>
+    <h1>Our menu</h1>
+    <p>Everything below is made to order. Send us a request through the order form and we'll confirm flavors, sizing, and pricing with you directly.</p>
+  </div>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <h2>Cookie boxes &amp; platters</h2>
+          <span class="line"></span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Corazoncito cookie platter</h3>
+              <p>30 different heart-shaped cookies.</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Classic cookie box</h3>
+              <p>Sugar cookies, chocolate chip, snickerdoodle, oatmeal walnut, and red velvet.</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Black and white cookie box</h3>
+              <p>An assortment in classic black and white.</p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Valentine's treat box</h3>
+              <p>15 different Valentine's treats, including strawberry linzer cookies.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <h2>Cookies</h2>
+          <span class="line"></span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Mini conchamor cookies</h3>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Classic chocolate chip cookies</h3>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Frosted snickerdoodles</h3>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Homemade oreos</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <h2>Cakes</h2>
+          <span class="line"></span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Heart shaped brownie cake</h3>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Heart shaped cookie cakes</h3>
+            </div>
+          </div>
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>White chocolate mini heart cakes</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <h2>Pies &amp; other treats</h2>
+          <span class="line"></span>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="12" cy="12" r="3.4"/></svg>
+            <div>
+              <h3>Banana split pie</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-cta">
+        <h2>Ready to order?</h2>
+        <p>Tell us the occasion, flavors, and date you need it by, and we'll follow up to confirm the details.</p>
+        <a href="index.html#order" class="btn btn-primary">Start your order</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© <span id="year"></span> Lily Bird Sweets. Baked with love. Made to share.</span>
+    <span>Site by RGV Sites For You</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
