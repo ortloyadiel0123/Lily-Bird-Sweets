@@ -346,6 +346,12 @@
     background:rgba(251,243,233,0.12);
   }
   .field textarea{resize:vertical; min-height:96px;}
+  .hp-field{
+    position:absolute;
+    left:-9999px;
+    width:1px; height:1px;
+    overflow:hidden;
+  }
   .field select{
     appearance:none;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23FBF3E9' stroke-width='2'><path d='M5 8l5 5 5-5'/></svg>");
@@ -561,18 +567,25 @@
         <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <input type="hidden" name="_subject" value="New cake order inquiry — Lily Bird Sweets">
 
+          <!-- Honeypot: hidden from real visitors, invisible to sighted and screen-reader users alike.
+               Bots that auto-fill every field will fill this one too, which is how we catch them. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
           <div class="order-grid">
             <div class="field">
               <label for="name">Your name</label>
-              <input type="text" id="name" name="Name" required placeholder="Full name">
+              <input type="text" id="name" name="Name" required placeholder="Full name" maxlength="100">
             </div>
             <div class="field">
               <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="Phone" required placeholder="(956) 000-0000">
+              <input type="tel" id="phone" name="Phone" required placeholder="(956) 000-0000" maxlength="20">
             </div>
             <div class="field">
               <label for="email">Email</label>
-              <input type="email" id="email" name="Email" required placeholder="you@email.com">
+              <input type="email" id="email" name="Email" required placeholder="you@email.com" maxlength="150">
             </div>
             <div class="field">
               <label for="occasion">Occasion</label>
@@ -606,7 +619,7 @@
             </div>
             <div class="field full">
               <label for="flavors">Flavor &amp; filling preferences</label>
-              <input type="text" id="flavors" name="Flavors" placeholder="e.g. vanilla bean cake, strawberry filling">
+              <input type="text" id="flavors" name="Flavors" placeholder="e.g. vanilla bean cake, strawberry filling" maxlength="200">
             </div>
             <div class="field">
               <label for="budget">Budget range</label>
@@ -621,16 +634,17 @@
             </div>
             <div class="field">
               <label for="inspiration">Inspiration photo (optional)</label>
-              <input type="file" id="inspiration" name="Inspiration photo" accept="image/*">
+              <input type="file" id="inspiration" name="Inspiration photo" accept="image/png, image/jpeg, image/webp">
+              <span class="hint">JPG, PNG, or WEBP — up to 5MB.</span>
             </div>
             <div class="field full">
               <label for="notes">Design ideas or additional details</label>
-              <textarea id="notes" name="Notes" placeholder="Colors, theme, allergies, anything else we should know"></textarea>
+              <textarea id="notes" name="Notes" placeholder="Colors, theme, allergies, anything else we should know" maxlength="1000"></textarea>
             </div>
           </div>
 
           <div class="order-submit">
-            <button type="submit" class="btn btn-primary">Send my request</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Send my request</button>
             <span class="disclaimer">This is an inquiry, not a confirmed order — we'll reach out to finalize details and pricing.</span>
           </div>
           <div class="form-status" id="formStatus" role="status"></div>
@@ -704,11 +718,57 @@
   // Order form submit (AJAX to Formspree so the visitor stays on the page)
   const orderForm = document.getElementById('orderForm');
   const formStatus = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+  const inspirationInput = document.getElementById('inspiration');
+
+  const MAX_FILE_MB = 5;
+  const RESUBMIT_WAIT_MS = 30000; // 30 seconds between successful submissions
+  const RATE_LIMIT_KEY = 'lilybird_last_submit';
+
+  function showStatus(kind, message) {
+    formStatus.className = 'form-status show ' + kind;
+    formStatus.textContent = message;
+  }
+
+  // Reject oversized inspiration photos before they ever get uploaded.
+  inspirationInput.addEventListener('change', () => {
+    const file = inspirationInput.files[0];
+    if (file && file.size > MAX_FILE_MB * 1024 * 1024) {
+      showStatus('err', `That photo is too large — please choose one under ${MAX_FILE_MB}MB.`);
+      inspirationInput.value = '';
+    }
+  });
 
   orderForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    formStatus.className = 'form-status show';
-    formStatus.textContent = 'Sending your request…';
+
+    // Honeypot check: if this hidden field has anything in it, a bot filled the form.
+    // Pretend it worked so the bot doesn't learn to look for a different tell.
+    const honeypot = orderForm.querySelector('#company').value;
+    if (honeypot) {
+      showStatus('ok', "Thank you! Your request has been sent — we'll follow up within 24–48 hours.");
+      orderForm.reset();
+      return;
+    }
+
+    // Simple client-side rate limit so one visitor (or a runaway script) can't
+    // hammer the inbox with repeated submissions in a short window.
+    const lastSubmit = Number(localStorage.getItem(RATE_LIMIT_KEY) || 0);
+    const now = Date.now();
+    if (now - lastSubmit < RESUBMIT_WAIT_MS) {
+      const waitSec = Math.ceil((RESUBMIT_WAIT_MS - (now - lastSubmit)) / 1000);
+      showStatus('err', `Please wait ${waitSec} more second(s) before sending another request.`);
+      return;
+    }
+
+    // Trim stray whitespace and hard-cap length on every text field, as a second
+    // layer behind the maxlength attributes already on the inputs.
+    orderForm.querySelectorAll('input[type=text], input[type=tel], input[type=email], textarea').forEach(el => {
+      el.value = el.value.trim().slice(0, 1000);
+    });
+
+    submitBtn.disabled = true;
+    showStatus('ok', 'Sending your request…');
 
     try {
       const response = await fetch(orderForm.action, {
@@ -718,16 +778,16 @@
       });
 
       if (response.ok) {
-        formStatus.className = 'form-status show ok';
-        formStatus.textContent = "Thank you! Your request has been sent — we'll follow up within 24–48 hours.";
+        localStorage.setItem(RATE_LIMIT_KEY, String(now));
+        showStatus('ok', "Thank you! Your request has been sent — we'll follow up within 24–48 hours.");
         orderForm.reset();
       } else {
-        formStatus.className = 'form-status show err';
-        formStatus.textContent = "Something went wrong sending your request. Please email lilybirdsweets@gmail.com directly.";
+        showStatus('err', "Something went wrong sending your request. Please email lilybirdsweets@gmail.com directly.");
       }
     } catch (err) {
-      formStatus.className = 'form-status show err';
-      formStatus.textContent = "Something went wrong sending your request. Please email lilybirdsweets@gmail.com directly.";
+      showStatus('err', "Something went wrong sending your request. Please email lilybirdsweets@gmail.com directly.");
+    } finally {
+      submitBtn.disabled = false;
     }
   });
 </script>
