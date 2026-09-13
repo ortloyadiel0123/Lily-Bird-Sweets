@@ -58,6 +58,39 @@
   .menu-cta h2{margin-bottom:12px;}
   .menu-cta p{color:var(--espresso-soft); margin-bottom:24px; max-width:44ch; margin-left:auto; margin-right:auto;}
 
+  /* ---------- Photo showcase (portfolio-style gallery) ---------- */
+  .showcase{
+    margin-top:88px;
+  }
+  .portfolio-grid{
+    column-count:3;
+    column-gap:22px;
+  }
+  .portfolio-item{
+    break-inside:avoid;
+    margin-bottom:22px;
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    background:linear-gradient(155deg, var(--blush), var(--cream-deep));
+  }
+  .portfolio-item:nth-child(3n+2){background:linear-gradient(155deg, var(--sage), #B9C4AC);}
+  .portfolio-item:nth-child(3n){background:linear-gradient(155deg, var(--cream-deep), #E7C6C2);}
+  .portfolio-item img{
+    width:100%;
+    height:auto;
+    display:block;
+    aspect-ratio:4/5;
+    object-fit:cover;
+  }
+
+  @media (max-width:840px){
+    .portfolio-grid{column-count:2;}
+  }
+  @media (max-width:520px){
+    .portfolio-grid{column-count:1;}
+  }
+
   @media (max-width:700px){
     .menu-list{grid-template-columns:1fr;}
   }
@@ -215,6 +248,51 @@
               <h3>Banana split pie</h3>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="showcase">
+        <div class="section-head">
+          <h2>From the kitchen</h2>
+          <p>A look at some of what we've baked.</p>
+        </div>
+        <div class="portfolio-grid">
+          <figure class="portfolio-item">
+            <img src="images/photo-01.jpg" alt="Heart-shaped baked treat with orange glaze and cream filling" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-02.jpg" alt="Frosted cookie with chocolate and pink drizzle and sprinkles" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-03.jpg" alt="Chocolate chip cookies with white chocolate chips" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-04.jpg" alt="Stack of cinnamon sugar snickerdoodle cookies" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-05.jpg" alt="Stack of heart-shaped chocolate sandwich cookies with sprinkles" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-06.jpg" alt="Assorted heart-shaped Valentine's cookies platter" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-07.jpg" alt="Assorted heart-shaped Valentine's cookies on a platter" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-08.jpg" alt="Layered dessert bar with fruit filling and chocolate pink drizzle top" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-09.jpg" alt="Heart-shaped peanut butter cheesecake concha cookies" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-10.jpg" alt="Small red and pink glazed heart cookies on a cake stand" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-11.jpg" alt="Assorted decorated cookies and treats" loading="lazy">
+          </figure>
+          <figure class="portfolio-item">
+            <img src="images/photo-12.jpg" alt="Assorted decorated cookies and treats" loading="lazy">
+          </figure>
         </div>
       </div>
 
